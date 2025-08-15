@@ -13,25 +13,46 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Clonar o repositório
+      # 1️⃣ Checkout do repositório
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           persist-credentials: true
 
-      # 2️⃣ Gerar os arquivos da cobrinha
-      - name: Generate Snake Neon SVGs
-        run: |
-          mkdir -p dist
-          echo "<svg>Snake Neon</svg>" > dist/github-contribution-grid-snake.svg
+      # 2️⃣ Configurar Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
 
-      # 3️⃣ Configurar Git
+      # 3️⃣ Instalar dependências
+      - name: Install dependencies
+        run: |
+          npm install
+          npm install -g github-contribution-snake
+
+      # 4️⃣ Gerar SVG real do Snake Neon
+      - name: Generate Snake Neon SVG
+        run: |
+          snk --username kauazipf --output dist/github-contribution-grid-snake.svg
+
+      # 5️⃣ Verificar se o SVG foi gerado corretamente
+      - name: Verify SVG
+        run: |
+          if [ ! -s dist/github-contribution-grid-snake.svg ]; then
+            echo "Error: SVG file was not generated or is empty."
+            exit 1
+          else
+            echo "SVG generated successfully."
+          fi
+
+      # 6️⃣ Configurar Git
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      # 4️⃣ Criar ou alternar para branch 'output'
+      # 7️⃣ Criar ou alternar para branch 'output'
       - name: Create or switch to branch 'output'
         run: |
           git fetch origin output || true
@@ -41,12 +62,12 @@ jobs:
             git checkout --orphan output
           fi
 
-      # 5️⃣ Copiar SVGs
+      # 8️⃣ Copiar SVG para o repositório raiz
       - name: Copy SVG
         run: |
           cp dist/github-contribution-grid-snake.svg github-contribution-grid-snake.svg
 
-      # 6️⃣ Commitar e push
+      # 9️⃣ Commit e push
       - name: Commit and push
         run: |
           git add github-contribution-grid-snake.svg
