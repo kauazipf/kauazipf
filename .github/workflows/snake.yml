@@ -16,11 +16,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Gerar a cobrinha com fundo preto e cores neon
       - name: Generate Snake Neon
         uses: Platane/snk/svg-only@v3
         with:
           github_user_name: "kauazipf"
           outputs: "github-contribution-grid-snake.svg"
+          palette: "#000000,#39ff14,#0ff,#ff073a,#fffd00"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
