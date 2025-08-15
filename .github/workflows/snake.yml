@@ -1,34 +1,65 @@
 name: Generate Snake Neon
-
+ 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *"
-
+    - cron: "0 0 * * *" # Executa todo dia à meia-noite UTC
+ 
 permissions:
   contents: write
-
+ 
 jobs:
   generate-snake:
     runs-on: ubuntu-latest
-
+ 
     steps:
+      # 1️⃣ Checkout do repositório
       - name: Checkout repository
         uses: actions/checkout@v3
-
+ 
+      # 2️⃣ Gerar SVG do Snake Neon usando a Action oficial
       - name: Generate Snake Neon
         uses: Platane/snk/svg-only@v3
         with:
-          github_user_name: kauazipf       # Substitua pelo seu usuário
-          svg_out_path: github-contribution-grid-snake.svg
-          palette: "white,#39ff14,#0ff,#ff073a,#fffd00"
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Commit and push
+ 
+      # 3️⃣ Verificar se o SVG foi criado
+      - name: Verify SVG
+        run: |
+          if [ ! -f dist/github-contribution-grid-snake.svg ]; then
+            echo "SVG not found! Exiting."
+            exit 1
+          fi
+ 
+      # 4️⃣ Configurar Git
+      - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+ 
+      # 5️⃣ Criar/alternar branch output
+      - name: Create or switch to branch 'output'
+        run: |
+          git fetch origin output || true
+          if git show-ref --verify --quiet refs/heads/output; then
+            git checkout output
+          else
+            git checkout --orphan output
+          fi
+ 
+      # 6️⃣ Copiar SVG para raiz
+      - name: Copy SVG
+        run: |
+          cp dist/github-contribution-grid-snake.svg github-contribution-grid-snake.svg
+ 
+      # 7️⃣ Commit e push
+      - name: Commit and push
+        run: |
           git add github-contribution-grid-snake.svg
           git commit -m "Update Snake Neon" || echo "No changes to commit"
-          git push origin HEAD:output --force
+          git push origin output --force
