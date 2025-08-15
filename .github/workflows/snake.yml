@@ -1,30 +1,41 @@
 name: Generate Snake Neon
 
 on:
+  workflow_dispatch: # Permite rodar manualmente
   schedule:
     - cron: "0 0 * * *" # Roda todo dia à meia-noite UTC
-  workflow_dispatch: # Permite rodar manualmente
 
 jobs:
-  build:
+  generate-snake:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      # 1️⃣ Fazer checkout do repositório
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Generate snake animation
+      # 2️⃣ Gerar a cobrinha neon
+      - name: Generate snake neon
         uses: Platane/snk@v3
         with:
           github_user_name: kauazipf
-          color: "#ff79c6"      # Rosa neon estilo Dracula
-          background: "#282a36" # Fundo escuro estilo Dracula
-          pulse: true            # Efeito neon piscante
+          color: "#ff79c6"
+          background: "#282a36"
+          pulse: true
           outputs: dist/github-contribution-grid-snake.svg
 
-      - name: Push to output branch
-        uses: crazy-max/ghaction-github-pages@v3.1.0
-        with:
-          target_branch: output
-          build_dir: dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # 3️⃣ Configurar Git para push
+      - name: Setup Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      # 4️⃣ Criar ou atualizar branch 'output'
+      - name: Create or update output branch
+        run: |
+          git fetch origin output || git checkout --orphan output
+          git checkout -B output
+          git rm -rf .
+          cp -r dist/* .
+          git add .
+          git commit -m "Update Snake Neon"
+          git push origin output --force
