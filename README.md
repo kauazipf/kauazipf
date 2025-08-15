@@ -1,9 +1,9 @@
-<!-- Jogo da cobrinha com efeito neon -->
+<!-- Snake Neon animado -->
 <p align="center">
-  <img src="https://github.com/kauazipf/kauazipf/blob/output/github-contribution-grid-snake.svg?sanitize=true" alt="snake neon animation" />
+  <img src="https://github.com/kauazipf/kauazipf/blob/output/github-contribution-grid-snake.svg" alt="snake neon animation" />
 </p>
 
-<h1 align="center">👋 Olá, eu sou o Kaua Zipf</h1>
+<h1 align="center">👋 Olá, eu sou o Kauã Fermino Zipf</h1>
 <h3 align="center">💻 Desenvolvedor Full Stack Enthusiast</h3>
 
 ---
@@ -41,7 +41,7 @@
 
 ### 📈 Contadores e Atividade
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=kauazipf&label=Visitas&color=ff69b4&style=for-the-badge" alt="contador de visitas"/>
+  <img src="https://komarev.com/ghpvc/?username=kauazipf&label=Visitas&color=ff79b4&style=for-the-badge" alt="contador de visitas"/>
   <img src="https://img.shields.io/github/commit-activity/m/kauazipf/kauazipf?label=Contribui%C3%A7%C3%B5es&style=for-the-badge&color=brightgreen" alt="commit activity"/>
   <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=kauazipf&theme=dracula" height="140"/>
   <img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=kauazipf&theme=dracula" height="140"/>
