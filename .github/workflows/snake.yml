@@ -1,40 +1,33 @@
 name: Generate Snake Neon
 
 on:
-  workflow_dispatch:      # Permite rodar manualmente
+  workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *"  # Todo dia à meia-noite UTC
+    - cron: "0 0 * * *"
 
 permissions:
-  contents: write         # Permite ao workflow dar push
+  contents: write
 
 jobs:
   generate-snake:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Clonar o repositório
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          persist-credentials: true # Usa o token do Actions
+          persist-credentials: true
 
-      # 2️⃣ Rodar seu script ou gerar os arquivos da cobra
-      - name: Generate Snake Neon
+      - name: Generate Snake Neon SVGs
         run: |
-          # Exemplo: gerar os arquivos dist/github-contribution-grid-snake.svg
-          # Substitua pelo seu script real
           mkdir -p dist
           echo "<svg>Snake Neon</svg>" > dist/github-contribution-grid-snake.svg
-          echo "<svg>Snake Neon</svg>" > github-contribution-grid-snake.svg
 
-      # 3️⃣ Configurar Git
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      # 4️⃣ Criar ou alternar para branch output
       - name: Create or switch to branch 'output'
         run: |
           git fetch origin output || true
@@ -42,17 +35,15 @@ jobs:
             git checkout output
           else
             git checkout --orphan output
-          fi
 
-      # 5️⃣ Limpar arquivos antigos (opcional)
-      - name: Clean old files
+      - name: Update Snake image in README
         run: |
-          rm -f '.github/workflows/snake.yml' || true
-          rm -f 'README.md' || true
+          cp dist/github-contribution-grid-snake.svg github-contribution-grid-snake.svg
+          # Substitui apenas a linha com o <img> do Snake
+          sed -i "s|<img src=\".*github-contribution-grid-snake.svg\".*>|<img src='https://github.com/kauazipf/kauazipf/raw/output/github-contribution-grid-snake.svg' alt='snake neon animation' />|" README.md
 
-      # 6️⃣ Commitar e push
       - name: Commit and push
         run: |
-          git add .
+          git add github-contribution-grid-snake.svg README.md
           git commit -m "Update Snake Neon" || echo "No changes to commit"
           git push origin output --force
