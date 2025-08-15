@@ -1,55 +1,58 @@
 name: Generate Snake Neon
 
 on:
-  workflow_dispatch: # Rodar manualmente
+  workflow_dispatch:      # Permite rodar manualmente
   schedule:
-    - cron: "0 0 * * *" # Todo dia à meia-noite UTC
+    - cron: "0 0 * * *"  # Todo dia à meia-noite UTC
+
+permissions:
+  contents: write         # Permite ao workflow dar push
 
 jobs:
   generate-snake:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout completo do repositório
+      # 1️⃣ Clonar o repositório
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # necessário para criar/atualizar branches
+          persist-credentials: true # Usa o token do Actions
 
-      # 2️⃣ Gerar a cobrinha neon
-      - name: Generate snake neon
-        uses: Platane/snk@v3
-        with:
-          github_user_name: kauazipf
-          color: "#ff79c6"
-          background: "#282a36"
-          pulse: true
-          outputs: dist/github-contribution-grid-snake.svg
+      # 2️⃣ Rodar seu script ou gerar os arquivos da cobra
+      - name: Generate Snake Neon
+        run: |
+          # Exemplo: gerar os arquivos dist/github-contribution-grid-snake.svg
+          # Substitua pelo seu script real
+          mkdir -p dist
+          echo "<svg>Snake Neon</svg>" > dist/github-contribution-grid-snake.svg
+          echo "<svg>Snake Neon</svg>" > github-contribution-grid-snake.svg
 
       # 3️⃣ Configurar Git
-      - name: Setup Git
+      - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      # 4️⃣ Criar ou atualizar branch 'output'
-      - name: Create or update output branch
+      # 4️⃣ Criar ou alternar para branch output
+      - name: Create or switch to branch 'output'
         run: |
-          # Se a branch output existir, usar ela; senão criar orphan
-          if git ls-remote --exit-code --heads origin output; then
+          git fetch origin output || true
+          if git show-ref --verify --quiet refs/heads/output; then
             git checkout output
           else
             git checkout --orphan output
           fi
 
-          # Limpar arquivos antigos
-          git rm -rf . || echo "Nada para remover"
+      # 5️⃣ Limpar arquivos antigos (opcional)
+      - name: Clean old files
+        run: |
+          rm -f '.github/workflows/snake.yml' || true
+          rm -f 'README.md' || true
 
-          # Copiar arquivo gerado
-          mkdir -p .  # garante que o diretório exista
-          cp -r dist/* .
-
-          # Commit e push
+      # 6️⃣ Commitar e push
+      - name: Commit and push
+        run: |
           git add .
-          git commit -m "Update Snake Neon" || echo "Nada para commitar"
+          git commit -m "Update Snake Neon" || echo "No changes to commit"
           git push origin output --force
