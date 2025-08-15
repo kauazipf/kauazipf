@@ -13,24 +13,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout do repositório
+      # 1️⃣ Checkout
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Gerar SVG do Snake Neon usando Platane/snk
+      # 2️⃣ Gerar SVG
       - name: Generate Snake Neon SVG
         uses: Platane/snk@v3
         with:
           github_user_name: ${{ github.repository_owner }}
-          svg_out_path: github-contribution-grid-snake.svg # <-- gera direto na raiz
+          svg_out_path: dist/github-contribution-grid-snake.svg
 
-      # 3️⃣ Configurar Git
+      # 3️⃣ Verificar se o SVG foi criado
+      - name: Verify SVG
+        run: |
+          if [ ! -f dist/github-contribution-grid-snake.svg ]; then
+            echo "SVG not found! Exiting."
+            exit 1
+          fi
+
+      # 4️⃣ Configurar Git
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      # 4️⃣ Criar ou alternar para branch 'output'
+      # 5️⃣ Criar/alternar branch output
       - name: Create or switch to branch 'output'
         run: |
           git fetch origin output || true
@@ -40,8 +48,15 @@ jobs:
             git checkout --orphan output
           fi
 
-      # 5️⃣ Commit e push
+      # 6️⃣ Copiar SVG para raiz
+      - name: Copy SVG
+        run: |
+          cp dist/github-contribution-grid-snake.svg github-contribution-grid-snake.svg
+
+      # 7️⃣ Commit e push
       - name: Commit and push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git add github-contribution-grid-snake.svg
           git commit -m "Update Snake Neon" || echo "No changes to commit"
