@@ -1,6 +1,6 @@
 <!-- Snake Neon animado -->
 <p align="center">
-  <img src="https://github.com/kauazipf/kauazipf/blob/output/github-contribution-grid-snake.svg" alt="snake neon animation" />
+  <img src="https://github.com/kauazipf/kauazipf/raw/output/github-contribution-grid-snake.svg" alt="snake neon animation" />
 </p>
 
 <h1 align="center">👋 Olá, eu sou o Kauã Fermino Zipf</h1>
