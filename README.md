@@ -4,7 +4,7 @@
 </p>
 
 <h1 align="center">👋 Olá, eu sou o Kaua Zipf</h1>
-<h3 align="center">💻 Desenvolvedor Java | Full Stack Enthusiast</h3>
+<h3 align="center">💻 Desenvolvedor Full Stack Enthusiast</h3>
 
 ---
 
