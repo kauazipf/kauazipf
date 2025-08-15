@@ -3,7 +3,7 @@ name: Generate Snake Neon
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *" # Executa todo dia à meia-noite UTC
+    - cron: "0 0 * * *"
 
 permissions:
   contents: write
@@ -13,26 +13,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout do repositório
+      # 1️⃣ Checkout
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Gerar SVG do Snake Neon com quadrados escuros e neon
+      # 2️⃣ Gerar SVG Snake Neon com quadrados escuros e neon
       - name: Generate Snake Neon
         uses: Platane/snk/svg-only@v3
         with:
-          github_user_name: kauazipf       # Substitua pelo seu usuário
+          github_user_name: kauazipf        # seu usuário
           svg_out_path: github-contribution-grid-snake.svg
-          # Quadrados escuros com cores neon brilhantes
           palette: "#0d0d0d,#39ff14,#0ff,#ff073a,#fffd00"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 3️⃣ Commit e push para branch output
+      # 3️⃣ Verificar se o SVG foi criado
+      - name: Verify SVG exists
+        run: |
+          if [ ! -f github-contribution-grid-snake.svg ]; then
+            echo "SVG not found! Exiting."
+            exit 1
+          fi
+
+      # 4️⃣ Commit e push para branch output
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -B output
           git add github-contribution-grid-snake.svg
           git commit -m "Update Snake Neon" || echo "No changes to commit"
-          git push origin HEAD:output --force
+          git push origin output --force
