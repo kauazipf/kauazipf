@@ -1,6 +1,6 @@
-<!-- Jogo da cobrinha com commits -->
+<!-- Jogo da cobrinha com efeito neon -->
 <p align="center">
-  <img src="https://github.com/kauazipf/kauazipf/blob/output/github-contribution-grid-snake.svg" alt="snake animation" />
+  <img src="https://github.com/kauazipf/kauazipf/blob/output/github-contribution-grid-snake.svg?sanitize=true" alt="snake neon animation" />
 </p>
 
 <h1 align="center">👋 Olá, eu sou o Kaua Zipf</h1>
