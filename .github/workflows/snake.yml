@@ -19,9 +19,47 @@ jobs:
 
       # 2️⃣ Gerar SVG do Snake Neon usando a Action oficial
       - name: Generate Snake Neon
-        uses: platane/snk-action@v1
+        uses: Platane/snk/svg-only@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          output_branch: output
-          output_file: github-contribution-grid-snake.svg
-          username: ${{ github.repository_owner }}
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # 3️⃣ Verificar se o SVG foi criado
+      - name: Verify SVG
+        run: |
+          if [ ! -f dist/github-contribution-grid-snake.svg ]; then
+            echo "SVG not found! Exiting."
+            exit 1
+          fi
+
+      # 4️⃣ Configurar Git
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      # 5️⃣ Criar/alternar branch output
+      - name: Create or switch to branch 'output'
+        run: |
+          git fetch origin output || true
+          if git show-ref --verify --quiet refs/heads/output; then
+            git checkout output
+          else
+            git checkout --orphan output
+          fi
+
+      # 6️⃣ Copiar SVG para raiz
+      - name: Copy SVG
+        run: |
+          cp dist/github-contribution-grid-snake.svg github-contribution-grid-snake.svg
+
+      # 7️⃣ Commit e push
+      - name: Commit and push
+        run: |
+          git add github-contribution-grid-snake.svg
+          git commit -m "Update Snake Neon" || echo "No changes to commit"
+          git push origin output --force
