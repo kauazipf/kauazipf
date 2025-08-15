@@ -17,13 +17,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Gerar SVG Snake Neon com quadrados escuros e neon
+      # 2️⃣ Gerar SVG Snake Neon com quadrados pretos e neon
       - name: Generate Snake Neon
         uses: Platane/snk/svg-only@v3
         with:
-          github_user_name: kauazipf        # seu usuário
+          github_user_name: kauazipf
           svg_out_path: github-contribution-grid-snake.svg
-          palette: "#0d0d0d,#39ff14,#0ff,#ff073a,#fffd00"
+          palette: "#000000,#39ff14,#0ff,#ff073a,#fffd00" # fundo preto + cores neon
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
