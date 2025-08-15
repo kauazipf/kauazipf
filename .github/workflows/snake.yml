@@ -1,4 +1,4 @@
-name: Generate Snake Neon
+name: Generate Snake Neon Dark
 
 on:
   workflow_dispatch:
@@ -9,20 +9,20 @@ permissions:
   contents: write
 
 jobs:
-  generate-snake:
+  generate-snake-dark:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Gerar a cobrinha com fundo preto e cores neon
-      - name: Generate Snake Neon
+      # Gerar a cobrinha com paleta otimizada para dark mode
+      - name: Generate Snake Neon (Dark Mode)
         uses: Platane/snk/svg-only@v3
         with:
           github_user_name: "kauazipf"
           outputs: "github-contribution-grid-snake.svg"
-          palette: "#000000,#39ff14,#0ff,#ff073a,#fffd00"
+          palette: "#000000,#222222,#39ff14,#0ff,#ff007f"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -32,5 +32,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -B output
           git add github-contribution-grid-snake.svg
-          git commit -m "Update Snake Neon" || echo "No changes to commit"
+          git commit -m "Update Snake Neon Dark" || echo "No changes to commit"
           git push origin output --force
