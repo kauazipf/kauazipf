@@ -1,17 +1,19 @@
-<!-- Banner animado -->
-<img src="https://i.imgur.com/2lC2B9p.gif" width="100%" alt="Banner"/>
+<!-- Jogo da cobrinha com commits -->
+<p align="center">
+  <img src="https://github.com/kauazipf/kauazipf/blob/output/github-contribution-grid-snake.svg" alt="snake animation" />
+</p>
 
-<h1 align="center">⚔️ Bem-vindo ao meu reino, viajante!</h1>
-<h3 align="center">🛠️ Kaua Zipf | Desenvolvedor Java & Criador de APIs REST Épicas</h3>
+<h1 align="center">👋 Olá, eu sou o Kaua Zipf</h1>
+<h3 align="center">💻 Desenvolvedor Java | Full Stack Enthusiast</h3>
 
 ---
 
-### 🌟 Sobre mim
-- 🏰 Criador de sistemas como se fossem reinos digitais
-- ⚙️ Mestre nas artes de **Java**, **Spring Boot** e **React**
-- 📦 Transformo requisitos em código mágico
-- 🧠 Sempre aprendendo novas magias (atualmente sobre **microservices**)
-- ☕ Movido a café e curiosidade
+### 🚀 Sobre mim
+- 💻 Desenvolvedor apaixonado por tecnologia e inovação
+- ⚙️ Especialista em **Java**, **TypeScript** e **React**
+- 📡 Experiência em desenvolvimento de APIs REST e integrações
+- 📚 Sempre aprendendo e explorando novas tecnologias
+- ☕ Movido a café e código limpo
 
 ---
 
@@ -20,6 +22,8 @@
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" width="50" alt="Java"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" width="50" alt="Spring Boot"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="50" alt="PostgreSQL"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="50" alt="React"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="50" alt="TypeScript"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="50" alt="HTML5"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="50" alt="CSS3"/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="50" alt="JavaScript"/>
@@ -37,13 +41,8 @@
 
 ### 📈 Contadores e Atividade
 <p align="center">
-  <!-- Contador de visitas -->
   <img src="https://komarev.com/ghpvc/?username=kauazipf&label=Visitas&color=ff69b4&style=for-the-badge" alt="contador de visitas"/>
-  
-  <!-- Contribuições -->
   <img src="https://img.shields.io/github/commit-activity/m/kauazipf/kauazipf?label=Contribui%C3%A7%C3%B5es&style=for-the-badge&color=brightgreen" alt="commit activity"/>
-  
-  <!-- Linguagens usadas -->
   <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=kauazipf&theme=dracula" height="140"/>
   <img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=kauazipf&theme=dracula" height="140"/>
 </p>
@@ -51,16 +50,15 @@
 ---
 
 ### 🕒 Commits Recentes
-<!-- Últimos commits -->
 [![Commits Recentes](https://github-readme-activity-graph.vercel.app/graph?username=kauazipf&theme=dracula)](https://github.com/kauazipf)
 
 ---
 
-### 🚀 Projetos em Destaque
-- 🏰 **Mercado Medieval API** – CRUD de personagens e itens mágicos, com filtros e boas práticas REST  
-  [🔗 Ver no GitHub](https://github.com/kauazipf/mercado-medieval)
-- 📚 **Biblioteca Digital** – API para gerenciamento de livros e empréstimos  
-  [🔗 Ver no GitHub](https://github.com/kauazipf/biblioteca-digital)
+### 📂 Projetos em Destaque
+- 🌦 **Clima Agora** – Aplicativo para cadastro de possíveis zonas de perigo, como deslizamentos e alagamentos.  
+  [🔗 Ver no GitHub](https://github.com/kauazipf/ClimaAgora)
+- 🛵 **Mottu App** – Aplicativo para gerenciamento de motos paradas na garagem da Mottu.  
+  [🔗 Ver no GitHub](https://github.com/kauazipf/Mottu-App)
 
 ---
 
@@ -72,14 +70,13 @@
   <a href="mailto:kauazipf@gmail.com">
     <img src="https://img.shields.io/badge/-Email-%23333?style=for-the-badge&logo=gmail&logoColor=white"/>
   </a>
+  <a href="https://wa.me/5511910192957" target="_blank">
+    <img src="https://img.shields.io/badge/-WhatsApp-%2325D366?style=for-the-badge&logo=whatsapp&logoColor=white"/>
+  </a>
 </p>
 
 ---
 
 <p align="center">
-  <img src="https://media.giphy.com/media/26FPq8Xvu7cFPXK5C/giphy.gif" width="150">
-</p>
-
-<p align="center">
-  <i>“Um bom código é como uma espada bem forjada: afiada, resistente e feita para durar.”</i>
+  <i>"Tecnologia é a ponte entre ideias e realidade."</i>
 </p>
