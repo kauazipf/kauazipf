@@ -3,7 +3,7 @@ name: Generate Snake Neon
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *" # Executa todo dia à meia-noite UTC
+    - cron: "0 0 * * *"
 
 permissions:
   contents: write
@@ -22,7 +22,7 @@ jobs:
         uses: Platane/snk@v3
         with:
           github_user_name: ${{ github.repository_owner }}
-          svg_out_path: dist/github-contribution-grid-snake.svg
+          svg_out_path: github-contribution-grid-snake.svg # <-- gera direto na raiz
 
       # 3️⃣ Configurar Git
       - name: Configure Git
@@ -40,12 +40,7 @@ jobs:
             git checkout --orphan output
           fi
 
-      # 5️⃣ Copiar SVG para a raiz do repositório
-      - name: Copy SVG
-        run: |
-          cp dist/github-contribution-grid-snake.svg github-contribution-grid-snake.svg
-
-      # 6️⃣ Commit e push
+      # 5️⃣ Commit e push
       - name: Commit and push
         run: |
           git add github-contribution-grid-snake.svg
