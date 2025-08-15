@@ -13,21 +13,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Clonar o repositório
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           persist-credentials: true
 
+      # 2️⃣ Gerar os arquivos da cobrinha
       - name: Generate Snake Neon SVGs
         run: |
           mkdir -p dist
           echo "<svg>Snake Neon</svg>" > dist/github-contribution-grid-snake.svg
 
+      # 3️⃣ Configurar Git
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+      # 4️⃣ Criar ou alternar para branch 'output'
       - name: Create or switch to branch 'output'
         run: |
           git fetch origin output || true
@@ -35,15 +39,16 @@ jobs:
             git checkout output
           else
             git checkout --orphan output
+          fi
 
-      - name: Update Snake image in README
+      # 5️⃣ Copiar SVGs
+      - name: Copy SVG
         run: |
           cp dist/github-contribution-grid-snake.svg github-contribution-grid-snake.svg
-          # Substitui apenas a linha com o <img> do Snake
-          sed -i "s|<img src=\".*github-contribution-grid-snake.svg\".*>|<img src='https://github.com/kauazipf/kauazipf/raw/output/github-contribution-grid-snake.svg' alt='snake neon animation' />|" README.md
 
+      # 6️⃣ Commitar e push
       - name: Commit and push
         run: |
-          git add github-contribution-grid-snake.svg README.md
+          git add github-contribution-grid-snake.svg
           git commit -m "Update Snake Neon" || echo "No changes to commit"
           git push origin output --force
