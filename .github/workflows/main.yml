@@ -1,0 +1,30 @@
+name: Generate Snake Neon
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Roda todo dia à meia-noite UTC
+  workflow_dispatch: # Permite rodar manualmente
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Generate snake animation
+        uses: Platane/snk@v3
+        with:
+          github_user_name: kauazipf
+          color: "#ff79c6"      # Rosa neon estilo Dracula
+          background: "#282a36" # Fundo escuro estilo Dracula
+          pulse: true            # Efeito neon piscante
+          outputs: dist/github-contribution-grid-snake.svg
+
+      - name: Push to output branch
+        uses: crazy-max/ghaction-github-pages@v3.1.0
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
