@@ -1,7 +1,9 @@
 <!-- Snake Neon animado -->
-<p align="center">
-  <img src="https://github.com/kauazipf/kauazipf/raw/output/github-contribution-grid-snake.svg" alt="snake neon animation" />
-</p>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ericshantos/ericshantos/output/github-contribution-grid-snake-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/ericshantos/ericshantos/output/github-contribution-grid-snake.svg">
+    <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/ericshantos/ericshantos/output/github-contribution-grid-snake.svg">
+  </picture>
 
 <h1 align="center">👋 Olá, eu sou o Kauã Fermino Zipf</h1>
 <h3 align="center">💻 Desenvolvedor Full Stack Enthusiast</h3>
